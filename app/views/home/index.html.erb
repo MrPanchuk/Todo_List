@@ -1,0 +1,5 @@
+<%= render "devise/shared/links" %>
+
+<% if signed_in? %>
+  <%= link_to "sign out", destroy_user_session_path, method: :delete %>
+<% end %>

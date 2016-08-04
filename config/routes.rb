@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   
   resources :projects
   resources :tasks
-  root to: "devise/sessions#new"
+  root 'home#index'
 end
