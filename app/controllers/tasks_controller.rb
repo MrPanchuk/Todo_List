@@ -1,19 +1,14 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  
-  def index
-    tasks = Project.all
-
-    render json: projects
-  end
 
   def create
-    task = Task.new(task_params)
+    head 401 unless current_user
+    @task = Task.new(task_params)
     
-    if task.save
-      render status: 201, json: task
+    if @task.save
+      redirect_to root_path
     else
-      render status: 409, json: {errors: task.errors}
+      render status: 409, json: {errors: @task.errors}
     end
   end
 
@@ -31,7 +26,7 @@ class TasksController < ApplicationController
     task = Task.find(params[:id])
     task.destroy
 
-    render status: 200, json: { head: :no_content }
+    redirect_to root_path
   end
 
   private

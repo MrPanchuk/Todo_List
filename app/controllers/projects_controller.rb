@@ -1,17 +1,16 @@
 class ProjectsController < ApplicationController
-
-  def index
-    projects = Project.all
-    render json: projects
-  end
+  before_action :authenticate_user!
 
   def create
-    project = Project.new(project_params)
+    head 401 unless current_user
+    new_proj_params = project_params
+    new_proj_params[:user_id] = current_user.id
+    @project = Project.new(new_proj_params)
     
-    if project.save
-      render status: 201, json: project
+    if @project.save
+      redirect_to root_path
     else
-      render status: 409, json: {errors: project.errors}
+      render status: 409, json: {errors: @project.errors}
     end
   end
 
@@ -28,7 +27,7 @@ class ProjectsController < ApplicationController
   def destroy
     project = Project.find(params[:id])
     project.destroy
-    render status: 200, json: { head: :no_content }
+    redirect_to root_path
   end
 
   private

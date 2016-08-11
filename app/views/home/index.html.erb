@@ -1,6 +1,23 @@
 <% if signed_in? %>
   <%= link_to "sign out", destroy_user_session_path, method: :delete %><br>
+
   <% @projects.each do |project|%>
-  <%= project.name%><br>
+    <%= project.name%><br>
+    <%= link_to project_path(project), method: :delete do %>destroy <% end%><br>
+    <%= form_for :task, :url => { :action => "create", :controller=>"tasks" } do |task| %>
+      <%= task.hidden_field :project_id, value: project.id %>
+      <%= task.text_field :name %><br>
+      <%= task.submit %>
+    <% end %>
+
+    <% project.tasks.each do |task|%>
+      <%= task.name%><br>
+      <%= link_to task_path(task), method: :delete do %>destroy <% end%><br>
+    <% end%>
   <% end%>
+<br>
+  <%= form_for :project, :url => { :action => "create", :controller=>"projects" } do |project| %>
+    <%= project.text_field :name %><br />
+    <%= project.submit %>
+  <% end %>
 <% end %>

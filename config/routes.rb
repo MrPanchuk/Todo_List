@@ -3,5 +3,9 @@ Rails.application.routes.draw do
   
   resources :projects
   resources :tasks
-  root 'home#index'
+
+  devise_scope :user do
+    root 'home#index'
+  end
+  
 end
