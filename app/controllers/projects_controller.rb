@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     project = Project.find(params[:id])
 
     if project.update(project_params)
-      render json: project 
+      redirect_to root_path
     else
       render status: 422, json: {errors: project.errors}
     end

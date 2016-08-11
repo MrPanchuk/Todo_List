@@ -19,4 +19,23 @@ body{
   background-attachment:fixed;
   text-align: center;
 }
-
+.transparent_edit{
+  border: none;
+  background: transparent;
+  font-size: 2em;
+  text-align: center;
+}
+.panel-body{
+  background-color: #DDDDDD;
+}
+.panel-footer{
+  border-bottom: 1px;
+}
+.form-control.font_size{
+  font-size: 2em;
+  text-align: center;
+}
+.btn.btn-primary.font_size{
+  font-size: 2em;
+  text-align: center;
+}

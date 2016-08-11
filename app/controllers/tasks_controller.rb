@@ -15,8 +15,8 @@ class TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
 
-    if task.update(project_params)
-      render json: task 
+    if task.update(task_params)
+      redirect_to root_path
     else
       render status: 422, json: {errors: task.errors}
     end

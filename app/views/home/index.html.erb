@@ -1,23 +1,118 @@
-<% if signed_in? %>
-  <%= link_to "sign out", destroy_user_session_path, method: :delete %><br>
+<div class="row">
+  <div class="col-md-10"><p></p></div>
+  <div class="col-md-1">
+    <%= current_user.email%>
+  </div>
+  <div class="col-md-1">
+    <%= link_to "sign out", destroy_user_session_path, class: "btn btn-primary", method: :delete %><br>
+  </div>
+</div>
 
-  <% @projects.each do |project|%>
-    <%= project.name%><br>
-    <%= link_to project_path(project), method: :delete do %>destroy <% end%><br>
-    <%= form_for :task, :url => { :action => "create", :controller=>"tasks" } do |task| %>
-      <%= task.hidden_field :project_id, value: project.id %>
-      <%= task.text_field :name %><br>
-      <%= task.submit %>
-    <% end %>
+<h1> SIMPLE TODO LISTS</h1>
+<h3> FROM RUBY GARAGE</h3>
+<% @projects.each do |project|%>
+  <div class="row">
+    <div class="col-md-2"><p></p></div>
+    <div class="col-md-8">
+      <article class="panel panel-primary">
+        <div class="panel-heading">
+          <div class="row">
 
-    <% project.tasks.each do |task|%>
-      <%= task.name%><br>
-      <%= link_to task_path(task), method: :delete do %>destroy <% end%><br>
-    <% end%>
-  <% end%>
+            <div class="col-md-2">
+              <i class="material-icons">insert_invitation</i>
+            </div>
+
+            <%= form_for project, :method => :PUT do |f| %>
+              <div class="col-md-8">
+                <%= f.text_field :name, :value => project.name, class: "transparent_edit"%>
+              </div>
+              <div class="col-md-1">
+                <%= f.submit "", :type => :image, :src => "ic_edit_white_24dp_1x.png" %>
+              </div>
+            <% end%>
+
+            <div class="col-md-1">
+              <%= form_for project, :method => :DELETE do |f| %>
+                <%= f.submit "", :type => :image, :src => "ic_delete_white_24dp_1x.png" %>
+              <% end%>
+            </div>
+
+          </div>
+        </div>
+        
+        <div class="panel-body">
+          <div class="row">
+
+            <div class="col-md-2">
+              <i class="material-icons">add</i>
+            </div>
+
+            <%= form_for :task, :url => { :action => "create", :controller=>"tasks" } do |task| %>
+              <%= task.hidden_field :project_id, value: project.id %>
+              <div class="col-md-8">
+                <%= task.text_field :name, class: "form-control font_size" %>
+              </div>
+              <div class="col-md-2">
+                <%= task.submit "Add task", class: "btn btn-success"%>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+
+        <% project.tasks.each do |task|%>
+          <div class="panel-footer">
+            <div class="row">
+
+              <div class="col-md-2">
+                <% if task.status == 2%>
+
+                  <%= form_for task, :method => :PUT do |f| %>
+                    <%= f.hidden_field :status, value:  1%>
+                    <%= f.submit "", :type => :image, :src => "ic_check_box_black_24dp_1x.png" %>
+                  <% end%>
+
+                <% else%>
+
+                  <%= form_for task, :method => :PUT do |f| %>
+                    <%= f.hidden_field :status, value:  2%>
+                    <%= f.submit "", :type => :image, :src => "ic_check_box_outline_blank_black_24dp_1x.png" %>
+                  <% end%>
+
+                <% end%>
+              </div>
+
+              <%= form_for task, :method => :PUT do |f| %>
+                <div class="col-md-8">
+                  <%= f.text_field :name, :value => task.name, class: "transparent_edit"%>
+                </div>
+                <div class="col-md-1">
+                  <%= f.submit "", :type => :image, :src => "ic_create_black_24dp_1x.png" %>
+                </div>
+              <% end%>
+
+              <div class="col-md-1">
+                <%= form_for task, :method => :DELETE do |f| %>
+                  <%= f.submit "", :type => :image, :src => "ic_delete_black_24dp_1x.png" %>
+                <% end%>
+              </div>
+
+            </div>
+          </div>
+        <% end%>
+        
+      </article>
+    </div>
+  </div>
+<% end%>
+
 <br>
+<div class="row">
+  <div class="col-md-4"><p></p></div>
   <%= form_for :project, :url => { :action => "create", :controller=>"projects" } do |project| %>
-    <%= project.text_field :name %><br />
-    <%= project.submit %>
+    <div class="col-md-4 ">
+    <%= project.text_field :name, class: "form-control font_size" %><br />
+    <%= project.submit "Add TODO List", class: "btn btn-primary font_size"%>
+    </div>
   <% end %>
-<% end %>
+</div>
