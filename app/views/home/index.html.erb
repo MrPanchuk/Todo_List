@@ -1,5 +1,6 @@
-<%= render "devise/shared/links" %>
-
 <% if signed_in? %>
-  <%= link_to "sign out", destroy_user_session_path, method: :delete %>
+  <%= link_to "sign out", destroy_user_session_path, method: :delete %><br>
+  <% @projects.each do |project|%>
+  <%= project.name%><br>
+  <% end%>
 <% end %>
