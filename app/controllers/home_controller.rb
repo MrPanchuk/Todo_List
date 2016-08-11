@@ -1,16 +1,14 @@
 class HomeController < ApplicationController
   helper_method :resource_name, :devise_mapping
+  before_action :authenticate_user!
   
   def index
-
+    head 401 unless current_user
+    projects = Project.where(user_id: current_user.id)
   end
 
   def resource_name
     :user
-  end
-
-  def resource
-    @resource ||= User.new
   end
 
   def devise_mapping
