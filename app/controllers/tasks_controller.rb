@@ -13,7 +13,9 @@ class TasksController < ApplicationController
   end
 
   def update
+    head 401 unless current_user
     task = Task.find(params[:id])
+    head 401 unless current_user.id == task.project.user_id
 
     if task.update(task_params)
       redirect_to root_path
@@ -23,9 +25,11 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    head 401 unless current_user
     task = Task.find(params[:id])
-    task.destroy
+    head 401 unless current_user.id == task.project.user_id
 
+    task.destroy
     redirect_to root_path
   end
 

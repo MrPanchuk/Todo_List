@@ -15,7 +15,9 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    head 401 unless current_user
     project = Project.find(params[:id])
+    head 401 unless current_user.id == project.user_id
 
     if project.update(project_params)
       redirect_to root_path
@@ -25,7 +27,10 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    head 401 unless current_user
     project = Project.find(params[:id])
+    head 401 unless current_user.id == project.user_id
+
     project.destroy
     redirect_to root_path
   end
