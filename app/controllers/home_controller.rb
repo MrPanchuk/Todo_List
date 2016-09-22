@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   def index
     head 401 unless current_user
     @projects = Project.where(user_id: current_user.id)
+    @projects = @projects.sort
   end
 
   def resource_name
