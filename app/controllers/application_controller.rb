@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def check_user
-    head 401 unless current_user
+    return head 401 unless current_user
   end
 end
