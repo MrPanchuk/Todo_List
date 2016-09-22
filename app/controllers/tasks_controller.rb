@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_user
 
   def create
-    head 401 unless current_user
     @task = Task.new(task_params)
     
     if @task.save
@@ -13,7 +13,6 @@ class TasksController < ApplicationController
   end
 
   def update
-    head 401 unless current_user
     task = Task.find(params[:id])
     head 401 unless current_user.id == task.project.user_id
 
@@ -25,7 +24,6 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    head 401 unless current_user
     task = Task.find(params[:id])
     head 401 unless current_user.id == task.project.user_id
 

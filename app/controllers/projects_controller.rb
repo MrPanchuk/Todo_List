@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_user
 
   def create
-    head 401 unless current_user
     new_proj_params = project_params
     new_proj_params[:user_id] = current_user.id
     @project = Project.new(new_proj_params)
@@ -15,7 +15,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    head 401 unless current_user
     project = Project.find(params[:id])
     head 401 unless current_user.id == project.user_id
 
@@ -27,7 +26,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    head 401 unless current_user
     project = Project.find(params[:id])
     head 401 unless current_user.id == project.user_id
 
