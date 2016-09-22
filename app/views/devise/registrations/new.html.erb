@@ -1,35 +1,35 @@
-<h2>Sign up</h2>
+<h2><%= I18n.t 'sign_up' %></h2>
 <div class="row">
   <div class="col-md-5"><p></p></div>
   <div class="col-md-2">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
       <div class="field">
-        <%= f.label :email %><br />
+        <%= f.label I18n.t 'email' %><br />
         <%= f.email_field :email, autofocus: true, class: "form-control" %>
       </div>
       <br>
 
       <div class="field">
-        <%= f.label :password %>
+        <%= f.label I18n.t 'pass' %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em>(<%= @minimum_password_length%> <%=I18n.t 'characters_min'%>)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
       </div>
       <br>
       
       <div class="field">
-        <%= f.label :password_confirmation %><br />
+        <%= f.label I18n.t 'pass_confirm' %><br />
         <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
       </div>
 
       <br>
-      <%= f.submit "Sign up", class: "btn btn-primary" %>
+      <%= f.submit "#{t :sign_up}", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
 <br>
 
-Already have an account? 
-<%= link_to "Log in.", new_session_path(resource_name) %><br>
+<%= I18n.t 'have_acc' %>
+<%= link_to "#{t :login}", new_session_path(resource_name) %><br>

@@ -19,18 +19,18 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  login: "Log In"
-  email: "Email"
-  pass: "Password"
-  pass_confirm: "Password confirmation"
-  new_to_todo: "New to TODO LISTS? "
-  create_acc: "Create an account."
-  sign_up: "Sign Up"
-  characters_min: "characters minimum"
-  have_acc: "Already have an account? "
-  sign_out: "Sign Out"
-  simple_todo: "SIMPLE TODO LISTS"
-  from: "FROM"
-  add_todo: "Add TODO List"
-  add_task: "Add Task"
+ua:
+  login: "Увійти"
+  email: "Пошта"
+  pass: "Пароль"
+  pass_confirm: "Підтвердження паролю"
+  new_to_todo: "Вперше у TODO LISTS? "
+  create_acc: "Створити аккаунт."
+  sign_up: "Реєстрація"
+  characters_min: "символів мінімум"
+  have_acc: "Вже маєте аккаунт? "
+  sign_out: "Вийти"
+  simple_todo: "ПРОСТИЙ ПЕРЕЛІК СПРАВ"
+  from: "ВІД"
+  add_todo: "Додати перелік справ"
+  add_task: "Додати справу"

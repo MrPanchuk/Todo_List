@@ -1,15 +1,5 @@
-<div class="row">
-  <div class="col-md-10"><p></p></div>
-  <div class="col-md-1">
-    <%= current_user.email%>
-  </div>
-  <div class="col-md-1">
-    <%= link_to "sign out", destroy_user_session_path, class: "btn btn-primary", method: :delete %><br>
-  </div>
-</div>
-
-<h1> SIMPLE TODO LISTS</h1>
-<h3> FROM RUBY GARAGE</h3>
+<h1><%= I18n.t 'simple_todo' %></h1>
+<h3> <%= I18n.t 'from' %> RUBY GARAGE</h3>
 <% @projects.each do |project|%>
   <div class="row">
     <div class="col-md-2"><p></p></div>
@@ -53,7 +43,7 @@
                 <%= task.text_field :name, class: "form-control font_size" %>
               </div>
               <div class="col-md-2">
-                <%= task.submit "Add Task", class: "btn btn-success"%>
+                <%= task.submit "#{t :add_task}", class: "btn btn-success"%>
               </div>
             <% end %>
 
@@ -112,7 +102,7 @@
   <%= form_for :project, :url => { :action => "create", :controller=>"projects" } do |project| %>
     <div class="col-md-4 ">
     <%= project.text_field :name, class: "form-control font_size" %><br />
-    <%= project.submit "Add TODO List", class: "btn btn-primary font_size"%>
+    <%= project.submit "#{t :add_todo}", class: "btn btn-primary font_size"%>
     </div>
   <% end %>
 </div>
