@@ -22,8 +22,11 @@ body{
 .transparent_edit{
   border: none;
   background: transparent;
-  font-size: 2em;
-  text-align: center;
+  font-size: 1.6em;
+  text-align: left;
+  padding-left: 0;
+  margin-left: 0;
+  width: 100%;
 }
 .panel-body{
   background-color: #DDDDDD;
@@ -33,9 +36,16 @@ body{
 }
 .form-control.font_size{
   font-size: 2em;
-  text-align: center;
+  text-align: left;
+  margin-right: 0;
+  padding-right: 0;
 }
 .btn.btn-primary.font_size{
   font-size: 2em;
   text-align: center;
+}
+.btn.btn-success{
+  width: 100%;
+  background-image: linear-gradient(#cccccc, #228822);
+  font-weight: 600;
 }
